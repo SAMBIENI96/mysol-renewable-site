@@ -119,6 +119,15 @@
             color: #000000;
             border-bottom: 1px solid #000000;
         }
+        .portfolio-filters {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .case-study-label {
+            background: #f3f3f4;
+            border: 0;
+            border-radius: 999px;
+        }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -479,6 +488,70 @@
             input, textarea, select, button { max-width: 100%; }
         }
 
+        @media (max-width: 767px) {
+            .portfolio-header {
+                align-items: flex-start !important;
+                margin-bottom: 3rem !important;
+            }
+            .portfolio-header > div:first-child {
+                width: 100%;
+            }
+            .portfolio-header p {
+                max-width: 100%;
+            }
+            .portfolio-filters {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 0.6rem 0.7rem !important;
+                border-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+            .portfolio-filters .filter-btn {
+                border: 1px solid rgba(26, 28, 28, 0.1);
+                border-radius: 999px;
+                background: #ffffff;
+                padding: 0.65rem 0.85rem;
+                font-size: 0.72rem;
+                line-height: 1;
+                white-space: nowrap;
+            }
+            .portfolio-filters .filter-btn.active,
+            .portfolio-filters .filter-btn:hover {
+                border-color: #111111;
+                background: #111111;
+                color: #ffffff;
+            }
+            .case-study-label {
+                margin-bottom: 2rem !important;
+                padding: 0.7rem 0.95rem !important;
+                font-size: 0.72rem !important;
+                line-height: 1.15 !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .shared-footer-card {
+                min-height: 320px;
+                display: flex;
+                align-items: flex-end;
+            }
+            .shared-footer-card-content {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                padding: 1.35rem;
+            }
+            .shared-footer-card h3 {
+                font-size: clamp(1.55rem, 8vw, 2.15rem);
+                line-height: 1.08;
+                overflow-wrap: anywhere;
+            }
+            .shared-footer-card p {
+                font-size: 0.95rem;
+                line-height: 1.45;
+            }
+        }
+
         .shared-menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(17,17,17,0.12); border-radius: 999px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 5px; box-shadow: 0 10px 24px rgba(20,41,50,0.08); }
         .shared-menu-toggle span { display: block; width: 19px; height: 2px; border-radius: 999px; background: #111; transition: transform 0.25s ease, opacity 0.25s ease; }
         .shared-nav.menu-open .shared-menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -527,12 +600,12 @@
 </section>
 <!-- Portfolio Grid -->
 <section class="py-section-gap px-margin-desktop max-w-max-width mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 gs-reveal">
+<div class="portfolio-header flex flex-col md:flex-row justify-between items-end mb-20 gap-8 gs-reveal">
 <div>
 <h2 class="font-headline-lg text-headline-lg mb-4">Portfolio</h2>
 <p class="font-body-md text-body-md text-muted-text">L'ingénierie de précision au service de la gestion environnementale sur tous les continents.</p>
 </div>
-<div class="flex gap-8 border-b border-surface-stroke pb-2">
+<div class="portfolio-filters flex gap-8 border-b border-surface-stroke pb-2">
 <button class="filter-btn font-label-caps text-label-caps text-muted-text hover:text-primary active transition-colors duration-300">TOUS LES PROJETS</button>
 <button class="filter-btn font-label-caps text-label-caps text-muted-text hover:text-primary transition-colors duration-300">SOLAIRE</button>
 <button class="filter-btn font-label-caps text-label-caps text-muted-text hover:text-primary transition-colors duration-300">ÉOLIEN</button>
@@ -580,7 +653,7 @@
 <div class="col-span-12 mt-section-gap gs-reveal">
 <div class="grid grid-cols-12 bg-white rounded-xl overflow-hidden border border-surface-stroke shadow-[0_8px_30px_rgb(168,216,255,0.05)] group">
 <div class="col-span-12 md:col-span-6 p-16 flex flex-col justify-center">
-<span class="font-label-caps text-label-caps text-primary border border-primary px-4 py-1 self-start mb-12">ÉTUDE DE CAS EN VEDETTE</span>
+<span class="case-study-label font-label-caps text-label-caps text-primary px-4 py-1 self-start mb-12">ÉTUDE DE CAS EN VEDETTE</span>
 <h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">Décarbonation du désert de Gobi</h2>
 <p class="font-body-lg text-body-lg text-muted-text mb-12">
                             Un projet multiphasé intégrant des systèmes de stockage hybrides solaire-éolien sur 500 kilomètres carrés, alimentant 1,2 million de foyers avec une fiabilité 24h/24 et 7j/7.

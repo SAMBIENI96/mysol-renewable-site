@@ -674,6 +674,29 @@
             input, textarea, select, button { max-width: 100%; }
         }
 
+        @media (max-width: 767px) {
+            .shared-footer-card {
+                min-height: 320px;
+                display: flex;
+                align-items: flex-end;
+            }
+            .shared-footer-card-content {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                padding: 1.35rem;
+            }
+            .shared-footer-card h3 {
+                font-size: clamp(1.55rem, 8vw, 2.15rem);
+                line-height: 1.08;
+                overflow-wrap: anywhere;
+            }
+            .shared-footer-card p {
+                font-size: 0.95rem;
+                line-height: 1.45;
+            }
+        }
+
         .shared-menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(17,17,17,0.12); border-radius: 999px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 5px; box-shadow: 0 10px 24px rgba(20,41,50,0.08); }
         .shared-menu-toggle span { display: block; width: 19px; height: 2px; border-radius: 999px; background: #111; transition: transform 0.25s ease, opacity 0.25s ease; }
         .shared-nav.menu-open .shared-menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }

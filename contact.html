@@ -484,6 +484,59 @@
             [class*="min-w-[400px]"] { min-width: min(84vw, 320px) !important; }
             input, textarea, select, button { max-width: 100%; }
             .accordion-trigger { gap: 1rem; }
+            .contact-info-card {
+                padding: 1.5rem !important;
+                border-radius: 18px !important;
+            }
+            .contact-info-row {
+                gap: 1rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            .contact-icon-box {
+                width: 42px !important;
+                height: 42px !important;
+                flex: 0 0 42px;
+            }
+            .contact-address {
+                font-size: clamp(1.2rem, 6vw, 1.55rem) !important;
+                line-height: 1.18 !important;
+                overflow-wrap: anywhere;
+            }
+            .contact-methods {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+                padding-top: 1.5rem !important;
+            }
+            .contact-method-value {
+                overflow-wrap: anywhere;
+                font-size: 0.95rem !important;
+            }
+            .contact-support-note {
+                padding-top: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .shared-footer-card {
+                min-height: 320px;
+                display: flex;
+                align-items: flex-end;
+            }
+            .shared-footer-card-content {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                padding: 1.35rem;
+            }
+            .shared-footer-card h3 {
+                font-size: clamp(1.55rem, 8vw, 2.15rem);
+                line-height: 1.08;
+                overflow-wrap: anywhere;
+            }
+            .shared-footer-card p {
+                font-size: 0.95rem;
+                line-height: 1.45;
+            }
         }
 
         .shared-menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(17,17,17,0.12); border-radius: 999px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 5px; box-shadow: 0 10px 24px rgba(20,41,50,0.08); }
@@ -574,39 +627,43 @@
 <!-- Office Info & Interactive Elements -->
 <div class="md:col-span-5 space-y-gutter">
 <!-- Global Headquarters Card -->
-<div class="glass-card p-10 rounded-xl animate-on-scroll" style="transition-delay: 200ms;">
-<div class="flex items-start gap-6 mb-8">
-<div class="w-12 h-12 bg-tertiary-fixed flex items-center justify-center rounded-lg">
+<div class="contact-info-card glass-card p-10 rounded-xl animate-on-scroll" style="transition-delay: 200ms;">
+<div class="contact-info-row flex items-start gap-6 mb-8">
+<div class="contact-icon-box w-12 h-12 bg-tertiary-fixed flex items-center justify-center rounded-lg">
 <span class="material-symbols-outlined text-on-tertiary-fixed">location_on</span>
 </div>
 <div>
 <h3 class="font-label-caps text-label-caps text-accent-orange mb-2">SIÈGE SOCIAL</h3>
-<p class="font-headline-md text-[24px] leading-tight">1200 Innovation Way, bureau 400<br/>San Francisco, CA 94105</p>
+<p class="contact-address font-headline-md text-[24px] leading-tight">1200 Innovation Way, bureau 400<br/>San Francisco, CA 94105</p>
 </div>
 </div>
-<div class="grid grid-cols-2 gap-4 pt-8 border-t border-surface-stroke">
+<div class="contact-methods grid grid-cols-2 gap-4 pt-8 border-t border-surface-stroke">
 <div>
 <p class="font-label-caps text-label-caps text-muted-text mb-1">APPELEZ-NOUS</p>
-<p class="font-body-md font-semibold text-primary">+1 (800) CLEAN-AI</p>
+<p class="contact-method-value font-body-md font-semibold text-primary">+1 (800) CLEAN-AI</p>
 </div>
 <div>
 <p class="font-label-caps text-label-caps text-muted-text mb-1">ÉCRIVEZ-NOUS</p>
-<p class="font-body-md font-semibold text-primary">hq@cleantech.vision</p>
+<p class="contact-method-value font-body-md font-semibold text-primary">hq@cleantech.vision</p>
 </div>
 </div>
 </div>
 <!-- European Hub Card -->
-<div class="glass-card p-10 rounded-xl animate-on-scroll" style="transition-delay: 300ms;">
-<div class="flex items-start gap-6 mb-8">
-<div class="w-12 h-12 bg-tertiary-fixed flex items-center justify-center rounded-lg">
-<span class="material-symbols-outlined text-on-tertiary-fixed">apartment</span>
+<div class="contact-info-card glass-card p-10 rounded-xl animate-on-scroll" style="transition-delay: 300ms;">
+<div class="contact-info-row flex items-start gap-6 mb-8">
+<div class="contact-icon-box w-12 h-12 bg-tertiary-fixed flex items-center justify-center rounded-lg">
+<svg aria-hidden="true" class="w-6 h-6 text-on-tertiary-fixed" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M4 21h16"></path>
+<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+<path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"></path>
+</svg>
 </div>
 <div>
 <h3 class="font-label-caps text-label-caps text-accent-orange mb-2">OPÉRATIONS EUROPÉENNES</h3>
-<p class="font-headline-md text-[24px] leading-tight">Vattenfallstrasse 12<br/>Berlin, Allemagne 10115</p>
+<p class="contact-address font-headline-md text-[24px] leading-tight">Vattenfallstrasse 12<br/>Berlin, Allemagne 10115</p>
 </div>
 </div>
-<div class="pt-8 border-t border-surface-stroke">
+<div class="contact-support-note pt-8 border-t border-surface-stroke">
 <p class="font-body-md text-muted-text italic">Soutien technique spécialisé pour la région EMEA.</p>
 </div>
 </div>

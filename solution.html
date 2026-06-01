@@ -458,6 +458,50 @@
             input, textarea, select, button { max-width: 100%; }
         }
 
+        @media (max-width: 767px) {
+            .bento-container {
+                display: flex !important;
+                flex-direction: column;
+                height: auto !important;
+                min-height: 0 !important;
+            }
+            .bento-card {
+                min-height: 210px;
+                padding: 1.35rem !important;
+            }
+            .bento-card:first-child {
+                min-height: 320px;
+                justify-content: flex-end;
+            }
+            .bento-card h3 {
+                overflow-wrap: anywhere;
+            }
+            .bento-card .material-symbols-outlined {
+                font-size: 2.1rem !important;
+                line-height: 1;
+            }
+            .shared-footer-card {
+                min-height: 320px;
+                display: flex;
+                align-items: flex-end;
+            }
+            .shared-footer-card-content {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                padding: 1.35rem;
+            }
+            .shared-footer-card h3 {
+                font-size: clamp(1.55rem, 8vw, 2.15rem);
+                line-height: 1.08;
+                overflow-wrap: anywhere;
+            }
+            .shared-footer-card p {
+                font-size: 0.95rem;
+                line-height: 1.45;
+            }
+        }
+
         .shared-menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(17,17,17,0.12); border-radius: 999px; background: #fff; align-items: center; justify-content: center; flex-direction: column; gap: 5px; box-shadow: 0 10px 24px rgba(20,41,50,0.08); }
         .shared-menu-toggle span { display: block; width: 19px; height: 2px; border-radius: 999px; background: #111; transition: transform 0.25s ease, opacity 0.25s ease; }
         .shared-nav.menu-open .shared-menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -606,7 +650,10 @@
 </div>
 </div>
 <div class="bento-card md:col-span-2 bg-white/5 border border-white/10 rounded-xl p-8 flex flex-col justify-center">
-<span class="material-symbols-outlined text-accent-orange text-4xl mb-4">memory</span>
+<svg aria-hidden="true" class="w-10 h-10 text-accent-orange mb-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+<rect x="6" y="6" width="12" height="12" rx="2"></rect>
+<path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4M10 10h4v4h-4z"></path>
+</svg>
 <h3 class="font-bold text-xl mb-2 text-white">Optimisation Neuronale</h3>
 <p class="text-on-primary-container text-sm">Protocoles de réseau auto-réparateurs qui s'adaptent instantanément aux variables climatiques et aux pics de demande.</p>
 </div>
