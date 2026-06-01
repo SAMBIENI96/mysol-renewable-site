@@ -1,0 +1,1827 @@
+﻿<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+
+<head>
+
+
+
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>MySol Visionnaire | Précision Atmosphérique &amp; Intelligence Renouvelable</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Inter:wght@900&amp;family=Geist:wght@100..900&amp;display=swap"
+    rel="stylesheet" />
+  <!-- GSAP & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#1a1c1c",
+            "background": "#f9f9f9",
+            "secondary-container": "#dde0e4",
+            "outline": "#747878",
+            "tertiary-fixed": "#cae6ff",
+            "tertiary-container": "#001e2f",
+            "surface-container-low": "#f3f3f4",
+            "surface": "#f9f9f9",
+            "surface-bright": "#f9f9f9",
+            "on-secondary-fixed-variant": "#43474b",
+            "primary": "#000000",
+            "outline-variant": "#c4c7c7",
+            "on-tertiary-container": "#5989ac",
+            "on-secondary-fixed": "#181c1f",
+            "on-background": "#1a1c1c",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#e2e2e2",
+            "secondary-fixed-dim": "#c3c7cb",
+            "tertiary-fixed-dim": "#9cccf2",
+            "inverse-primary": "#c8c6c5",
+            "on-primary-container": "#858383",
+            "on-primary-fixed-variant": "#474646",
+            "muted-text": "#666666",
+            "on-surface-variant": "#444748",
+            "on-error-container": "#93000a",
+            "primary-container": "#1c1b1b",
+            "surface-stroke": "#E6F2F8",
+            "accent-orange": "#FF7A30",
+            "on-tertiary-fixed-variant": "#134b6c",
+            "inverse-on-surface": "#f0f1f1",
+            "secondary-fixed": "#e0e3e7",
+            "tertiary": "#000000",
+            "surface-tint": "#5f5e5e",
+            "error-container": "#ffdad6",
+            "surface-dim": "#dadada",
+            "inverse-surface": "#2f3131",
+            "on-tertiary-fixed": "#001e2f",
+            "on-primary-fixed": "#1c1b1b",
+            "secondary": "#5b5f62",
+            "on-tertiary": "#ffffff",
+            "on-secondary-container": "#5f6367",
+            "surface-container-lowest": "#ffffff",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e5e2e1",
+            "primary-fixed-dim": "#c8c6c5",
+            "surface-container-high": "#e8e8e8",
+            "surface-variant": "#e2e2e2",
+            "surface-container": "#eeeeee",
+            "on-error": "#ffffff"
+          },
+          "fontFamily": {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Inter', 'sans-serif'],
+            geist: ['Geist', 'sans-serif']
+          },
+          "spacing": {
+            'margin-desktop': '64px',
+            'section-gap': '112px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      color: #1a1c1c;
+      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .site-nav-fixed {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      z-index: 9999 !important;
+    }
+
+    #main-nav.home-nav {
+      top: 8px !important;
+      left: clamp(16px, 5vw, 96px) !important;
+      right: clamp(16px, 5vw, 96px) !important;
+      width: auto !important;
+      padding: 0.5rem 0.5rem 0.5rem 1.25rem !important;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 18px 50px rgba(10, 68, 95, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .home-brand-mark {
+      letter-spacing: -0.08em;
+    }
+
+    .home-nav-link {
+      position: relative;
+      color: #5f6367;
+      font-weight: 600;
+      padding: 0.58rem 0.35rem;
+      transition: color 0.25s ease;
+    }
+
+    .home-nav-link::after {
+      content: '';
+      position: absolute;
+      right: 0.15rem;
+      bottom: 0.18rem;
+      left: 0.15rem;
+      height: 2px;
+      border-radius: 999px;
+      background: #111111;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+
+    .home-nav-link:hover {
+      color: #111111;
+    }
+
+    .home-nav-link.active {
+      color: #111111;
+    }
+
+    .home-nav-link:hover::after,
+    .home-nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    .home-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border-radius: 8px;
+      background: #050505;
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .home-hero {
+      min-height: 84svh;
+      padding: 8.2rem 5% 0;
+      background:
+        linear-gradient(180deg, rgba(37, 171, 221, 0.96) 0%, rgba(115, 211, 232, 0.92) 42%, rgba(247, 251, 250, 0.96) 100%);
+      overflow: hidden;
+    }
+
+    .home-hero-copy {
+      position: relative;
+      z-index: 3;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .home-hero-title {
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.8rem, 6.2vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.06;
+    }
+
+    .home-hero-subtitle {
+      color: rgba(31, 56, 65, 0.78);
+      font-size: clamp(1rem, 1.2vw, 1.2rem);
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .home-hero-turbine {
+      position: absolute;
+      left: -2.5rem;
+      bottom: 4rem;
+      z-index: 1;
+      width: min(31vw, 440px);
+      min-width: 230px;
+      height: 64vh;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.92;
+      filter: saturate(0.8) brightness(1.16);
+      mix-blend-mode: screen;
+    }
+
+    .home-hero-roof {
+      position: absolute;
+      right: -4vw;
+      bottom: -2rem;
+      z-index: 2;
+      width: min(72vw, 980px);
+      height: 27vh;
+      min-height: 185px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.92), rgba(230,240,244,0.98)),
+        repeating-linear-gradient(90deg, rgba(160, 179, 187, 0.28) 0 10px, rgba(255,255,255,0.7) 10px 28px);
+      clip-path: polygon(10% 34%, 100% 0, 100% 100%, 0 100%);
+      box-shadow: -20px -24px 55px rgba(67, 142, 168, 0.18);
+    }
+
+    .home-hero-panels {
+      position: absolute;
+      right: 0;
+      bottom: 18vh;
+      z-index: 2;
+      width: min(56vw, 760px);
+      height: 16vh;
+      min-height: 95px;
+      object-fit: cover;
+      object-position: center;
+      clip-path: polygon(18% 40%, 100% 0, 100% 60%, 0 100%);
+      opacity: 0.92;
+      filter: saturate(0.9) brightness(1.08);
+    }
+
+    .home-solutions {
+      background: #f8faf9;
+      padding: clamp(3.8rem, 6.5vw, 6.5rem) 5% clamp(3.8rem, 6vw, 5.8rem);
+    }
+
+    .home-solutions-kicker {
+      color: #5f6367;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .home-solutions-title {
+      color: #111111;
+      font-size: clamp(2rem, 3.2vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .home-solutions-copy {
+      color: #7a7f82;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .home-solutions-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1.5px solid #111111;
+      border-radius: 6px;
+      padding: 0.9rem 1.7rem;
+      color: #111111;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .home-solutions-button:hover {
+      background: #111111;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .solution-card {
+      position: relative;
+      min-height: 245px;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(18, 31, 36, 0.08);
+      background: #ffffff;
+      box-shadow: 0 18px 45px rgba(20, 41, 50, 0.08);
+      isolation: isolate;
+    }
+
+    .solution-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      z-index: -2;
+    }
+
+    .solution-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 28%, rgba(255, 255, 255, 0.9) 77%, #ffffff 100%);
+      z-index: -1;
+    }
+
+    .solution-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .solution-arrow {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #5f6367;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      line-height: 1;
+      box-shadow: 0 8px 20px rgba(20, 41, 50, 0.08);
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .solution-card:hover .solution-arrow {
+      transform: translate(3px, -3px);
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .solution-card-body {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0 1.5rem 1.45rem;
+    }
+
+    .solution-card-title {
+      color: #111111;
+      font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.45rem;
+    }
+
+    .solution-card-text {
+      color: #6f7578;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .partners-scroll {
+      position: relative;
+      background: #f8faf9;
+    }
+
+    .partners-pin {
+      min-height: 84svh;
+      display: grid;
+      align-items: center;
+      padding: clamp(3.2rem, 5vw, 4.4rem) 5%;
+      overflow: hidden;
+    }
+
+    .partners-layout {
+      width: min(1460px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(480px, 1.04fr) minmax(420px, 0.96fr);
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .partners-cards-window {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      height: clamp(440px, 66vh, 600px);
+    }
+
+    .partners-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+    }
+
+    .partner-card {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 32px;
+      background: #f0f1f1;
+      box-shadow: 0 18px 50px rgba(20, 41, 50, 0.08);
+      padding: clamp(1.5rem, 3vw, 2.4rem);
+      isolation: isolate;
+      opacity: 0;
+      transform: translateY(70px) scale(0.98);
+    }
+
+    .partner-card:first-child {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .partner-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,255,255,0.62));
+      z-index: -1;
+    }
+
+    .partner-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+      filter: grayscale(1) brightness(1.22);
+      z-index: -2;
+    }
+
+    .quote-mark {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.75;
+      letter-spacing: 0;
+    }
+
+    .partner-quote {
+      color: rgba(30, 37, 40, 0.66);
+      font-size: clamp(1.45rem, 2.55vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .partner-author {
+      color: #5f6367;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .partner-card .quote-mark,
+    .partner-card .partner-quote,
+    .partner-card .partner-author {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+
+    .partners-copy {
+      position: relative;
+    }
+
+    .partners-kicker {
+      color: #5f6367;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .partners-title {
+      color: #111111;
+      font-size: clamp(2rem, 3.2vw, 3.3rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .partners-text {
+      color: #7a7f82;
+      max-width: 440px;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .logo-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      max-width: 560px;
+    }
+
+    .logo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 38px;
+      padding: 0.52rem 0.8rem;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #252a2c;
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(20, 41, 50, 0.06);
+      border: 1px solid rgba(18, 31, 36, 0.04);
+      white-space: nowrap;
+    }
+
+    .logo-pill span {
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #252a2c;
+      color: #ffffff;
+      font-size: 0.68rem;
+      line-height: 1;
+    }
+
+    .home-blogs {
+      background: #f8faf9;
+      padding: clamp(4rem, 7vw, 6.5rem) 5% clamp(4rem, 6.5vw, 6rem);
+    }
+
+    .home-blogs-kicker {
+      color: #5f6367;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .home-blogs-title {
+      color: #111111;
+      font-size: clamp(2rem, 3.3vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .home-blogs-copy {
+      color: #7a7f82;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .home-blogs-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1.5px solid #111111;
+      border-radius: 6px;
+      padding: 0.9rem 1.7rem;
+      color: #111111;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .home-blogs-button:hover {
+      background: #111111;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .blog-card-modern {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(18, 31, 36, 0.08);
+      background: #ffffff;
+      box-shadow: 0 18px 45px rgba(20, 41, 50, 0.08);
+      isolation: isolate;
+    }
+
+    .blog-card-modern img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      z-index: -2;
+    }
+
+    .blog-card-modern::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.88) 74%, #ffffff 100%);
+      z-index: -1;
+    }
+
+    .blog-card-modern:hover img {
+      transform: scale(1.06);
+    }
+
+    .blog-arrow {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #5f6367;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      line-height: 1;
+      box-shadow: 0 8px 20px rgba(20, 41, 50, 0.08);
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .blog-card-modern:hover .blog-arrow {
+      transform: translate(3px, -3px);
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .blog-card-body {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0 1.5rem 1.45rem;
+    }
+
+    .blog-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: #050505;
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .blog-card-title {
+      color: #111111;
+      font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 0.55rem;
+    }
+
+    .blog-card-text {
+      color: #6f7578;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    @media (max-width: 767px) {
+      #main-nav.home-nav {
+        left: 12px !important;
+        right: 12px !important;
+        padding: 0.45rem 0.45rem 0.45rem 1rem !important;
+      }
+
+      .home-hero {
+        padding-top: 7.4rem;
+        min-height: 78svh;
+      }
+
+      .home-hero-turbine {
+        left: -5rem;
+        bottom: 5rem;
+        width: 260px;
+        height: 46vh;
+        opacity: 0.7;
+      }
+
+      .home-hero-roof {
+        width: 110vw;
+        height: 21vh;
+        min-height: 135px;
+      }
+
+      .home-hero-panels {
+        width: 96vw;
+        height: 15vh;
+        bottom: 14vh;
+      }
+
+      .solution-card {
+        min-height: 245px;
+      }
+
+      .partners-pin {
+        min-height: auto;
+        padding: 3.5rem 5%;
+      }
+
+      .partners-layout {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      .partners-copy {
+        position: static;
+      }
+
+      .partners-cards-window {
+        overflow: visible;
+        height: auto;
+        border-radius: 22px;
+        padding-bottom: 0.5rem;
+      }
+
+      .partners-track {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        height: auto;
+      }
+
+      .partner-card {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        min-height: 330px;
+        height: auto;
+        opacity: 1;
+        transform: none;
+      }
+
+      .partner-card .quote-mark,
+      .partner-card .partner-quote,
+      .partner-card .partner-author {
+        opacity: 1;
+        transform: none;
+      }
+
+      .logo-cloud {
+        max-height: 220px;
+        overflow: hidden;
+      }
+
+      .blog-card-modern {
+        min-height: 300px;
+      }
+    }
+
+    .gs-reveal {
+      opacity: 0;
+    }
+
+    .hero-title-line {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      overflow: hidden;
+    }
+
+    .magnetic-wrap {
+      display: inline-block;
+    }
+
+    .hero-curve-path {
+      mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+
+    .parallax-img {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    .stats-grid-item {
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .stats-grid-item:nth-child(2n) {
+      border-right: none;
+    }
+
+    @media (min-width: 1024px) {
+      .stats-grid-item:nth-child(2n) {
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .stats-grid-item:nth-child(4n) {
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      main,
+      section,
+      footer {
+        max-width: 100%;
+      }
+
+      [data-purpose="statistics"],
+      [data-purpose="featured-content"],
+      [data-purpose="testimonials"] {
+        padding-top: 5rem !important;
+        padding-bottom: 5rem !important;
+      }
+
+      [data-purpose="statistics"] > div,
+      [data-purpose="featured-content"] > div {
+        width: 100%;
+      }
+
+      [data-purpose="featured-content"] .parallax-img {
+        height: min(58vw, 420px) !important;
+      }
+
+      [data-purpose="featured-content"] .parallax-img + div {
+        left: 1.25rem !important;
+        right: 1.25rem !important;
+        bottom: 1.25rem !important;
+        padding: 1.5rem !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      #main-nav.home-nav {
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.55rem;
+        padding: 0.7rem 0.75rem 0.75rem !important;
+      }
+
+      #main-nav.home-nav .home-brand-mark {
+        font-size: 1.65rem !important;
+      }
+
+      #main-nav.home-nav nav {
+        order: 3;
+        display: flex !important;
+        width: 100%;
+        gap: 0.85rem;
+        overflow-x: auto;
+        padding: 0.1rem 0 0;
+        scrollbar-width: none;
+      }
+
+      #main-nav.home-nav nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      #main-nav.home-nav .home-nav-link {
+        flex: 0 0 auto;
+        padding: 0.35rem 0;
+        font-size: 0.82rem;
+      }
+
+      #main-nav.home-nav .home-cta {
+        display: none !important;
+      }
+
+      .home-hero {
+        min-height: auto;
+        padding-top: 9.3rem;
+        padding-bottom: 3.75rem;
+      }
+
+      .home-hero-copy {
+        max-width: 92vw;
+      }
+
+      .home-hero-title {
+        font-size: clamp(2.15rem, 11vw, 3.6rem);
+        overflow-wrap: break-word;
+      }
+
+      .home-hero-subtitle {
+        max-width: 100%;
+        font-size: 0.95rem;
+      }
+
+      .home-hero-turbine {
+        left: -5.75rem;
+        bottom: 4.5rem;
+        width: 240px;
+        min-width: 0;
+        height: 36vh;
+      }
+
+      .home-hero-roof {
+        height: 18vh;
+        min-height: 115px;
+      }
+
+      .home-hero-panels {
+        height: 11vh;
+        min-height: 72px;
+        bottom: 11vh;
+      }
+
+      .home-solutions,
+      .home-blogs {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .home-solutions-title,
+      .home-blogs-title,
+      .partners-title {
+        font-size: clamp(1.9rem, 8vw, 2.75rem);
+      }
+
+      .solution-card,
+      .blog-card-modern {
+        min-height: 280px;
+        border-radius: 22px;
+      }
+
+      .partners-pin {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .partners-layout {
+        gap: 2rem;
+      }
+
+      .partner-card {
+        min-height: 300px;
+      }
+
+      .partner-quote {
+        font-size: clamp(1.25rem, 7vw, 1.8rem);
+      }
+
+      [data-purpose="statistics"],
+      [data-purpose="featured-content"],
+      [data-purpose="testimonials"] {
+        padding: 4rem 5% !important;
+      }
+
+      [data-purpose="statistics"] .grid {
+        width: 100%;
+      }
+
+      .stats-grid-item {
+        padding: 1.35rem !important;
+      }
+
+      .stats-grid-item .text-5xl {
+        font-size: 2.25rem !important;
+      }
+
+      [data-purpose="statistics"] h2,
+      [data-purpose="featured-content"] h2 {
+        font-size: clamp(2rem, 9vw, 2.8rem) !important;
+      }
+
+      [data-purpose="featured-content"] .parallax-img {
+        height: min(82vw, 340px) !important;
+      }
+
+      [data-purpose="featured-content"] .parallax-img + div {
+        position: static !important;
+        border-radius: 0 0 2rem 2rem;
+      }
+
+      [data-purpose="testimonials"] > div {
+        gap: 4rem !important;
+      }
+
+      [data-purpose="testimonials"] blockquote {
+        font-size: clamp(1.45rem, 7vw, 2rem) !important;
+      }
+
+      footer[data-purpose="premium-footer"] > div {
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
+        padding: 2rem 1.25rem !important;
+      }
+
+      footer[data-purpose="premium-footer"] [class*="text-4xl"] {
+        font-size: 2rem !important;
+      }
+
+      footer[data-purpose="premium-footer"] [class*="px-9"] {
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      #main-nav.home-nav nav {
+        gap: 0.7rem;
+      }
+
+      .home-hero-title {
+        font-size: clamp(2rem, 12vw, 3rem);
+      }
+
+      .stats-grid-item {
+        padding: 1.1rem !important;
+      }
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      border-radius: 999px;
+      background: #ffffff;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 10px 24px rgba(20, 41, 50, 0.08);
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 19px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111111;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    #main-nav.menu-open .mobile-menu-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    #main-nav.menu-open .mobile-menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #main-nav.menu-open .mobile-menu-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 767px) {
+      #main-nav.home-nav {
+        align-items: center;
+      }
+
+      #main-nav.home-nav .mobile-menu-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      #main-nav.home-nav .magnetic-wrap {
+        display: none;
+      }
+
+      #main-nav.home-nav nav {
+        flex-direction: column;
+        gap: 0;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
+        border-top: 1px solid transparent;
+        transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.25s ease, border-color 0.25s ease;
+      }
+
+      #main-nav.home-nav.menu-open nav {
+        max-height: 360px;
+        opacity: 1;
+        padding: 0.7rem 0 0.1rem;
+        border-top-color: rgba(17, 17, 17, 0.08);
+      }
+
+      #main-nav.home-nav .home-nav-link {
+        width: 100%;
+        padding: 0.75rem 0.7rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+      }
+
+      #main-nav.home-nav .home-nav-link:hover,
+      #main-nav.home-nav .home-nav-link.active {
+        background: rgba(17, 17, 17, 0.05);
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- BEGIN: TopNavBar -->
+  <header
+    class="home-nav site-nav-fixed fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-white/95 backdrop-blur-xl transition-all duration-300"
+    data-purpose="main-header" id="main-nav">
+    <a class="home-brand-mark text-3xl md:text-4xl font-black text-[#111111] leading-none" data-purpose="brand-logo" href="index.html">MySol</a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="hidden md:flex gap-3 lg:gap-7 text-base tracking-tight">
+      <a class="home-nav-link active" href="index.html" aria-current="page">Accueil</a>
+      <a class="home-nav-link" href="apropos.html">À propos</a>
+      <a class="home-nav-link" href="solution.html">Solutions</a>
+      <a class="home-nav-link" href="Projects.html">Projets</a>
+      <a class="home-nav-link" href="Blogs.html">Articles</a>
+      <a class="home-nav-link" href="contact.html">Contact</a>
+    </nav>
+    <div class="magnetic-wrap">
+      <a class="home-cta px-7 py-4 text-base font-bold transition-all magnetic-btn" href="contact.html">
+        <span class="text-xs">&#9889;</span>
+        Commencer
+      </a>
+    </div>
+  </header>
+  <!-- END: TopNavBar -->
+  <main>
+    <!-- BEGIN: HeroSection -->
+    <section class="home-hero relative" data-purpose="hero">
+      <img alt="Éolienne" class="home-hero-turbine" src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=85" />
+      <img alt="Panneaux solaires" class="home-hero-panels" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85" />
+      <div class="home-hero-roof" aria-hidden="true"></div>
+      <div class="home-hero-copy">
+        <div class="hero-title-line">
+          <h1 class="hero-text home-hero-title">Alimenter un avenir</h1>
+        </div>
+        <div class="hero-title-line">
+          <h1 class="hero-text home-hero-title mb-7">plus intelligent et durable</h1>
+        </div>
+        <p class="home-hero-subtitle max-w-xl mx-auto mb-7 gs-reveal-hero">
+          Des solutions d’énergie propre innovantes, pensées pour une meilleure planète et conçues pour évoluer avec la technologie et les données.
+        </p>
+        <div class="flex justify-center gs-reveal-hero">
+          <div class="magnetic-wrap">
+            <a class="home-cta px-7 py-4 text-base font-bold transition-all magnetic-btn" href="contact.html">
+              <span class="text-xs">&#9889;</span>
+              Commencer
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: HeroSection -->
+    <!-- BEGIN: SolutionsSection -->
+    <section class="home-solutions" id="solutions" data-purpose="solutions">
+      <div class="max-w-7xl mx-auto text-center">
+        <div class="home-solutions-kicker mb-5 gs-reveal">⊙ Nos solutions</div>
+        <h2 class="home-solutions-title max-w-3xl mx-auto mb-5 gs-reveal">
+          Innover à la rencontre<br class="hidden md:block" /> de la technologie et de l’énergie.
+        </h2>
+        <p class="home-solutions-copy max-w-xl mx-auto mb-7 gs-reveal">
+          De la production propre à la supervision intelligente, MySol aide les entreprises à utiliser la technologie pour accélérer une croissance durable et mesurer leur impact.
+        </p>
+        <a class="home-solutions-button mb-14 gs-reveal" href="solution.html">
+          <span>⊙</span>
+          Voir toutes les solutions
+        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
+          <a class="solution-card gs-reveal" href="solution.html">
+            <img alt="Systèmes d’énergie renouvelable" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85" />
+            <span class="solution-arrow">→</span>
+            <div class="solution-card-body">
+              <h3 class="solution-card-title">Systèmes d’énergie renouvelable</h3>
+              <p class="solution-card-text">Des solutions solaires et éoliennes évolutives, conçues pour la performance, la fiabilité et une planète plus propre.</p>
+            </div>
+          </a>
+          <a class="solution-card gs-reveal" href="solution.html">
+            <img alt="Supervision intelligente et analyses" src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=85" />
+            <span class="solution-arrow">→</span>
+            <div class="solution-card-body">
+              <h3 class="solution-card-title">Supervision intelligente &amp; analyses</h3>
+              <p class="solution-card-text">Des tableaux de bord alimentés par l’IA pour suivre en temps réel l’usage et l’efficacité énergétique.</p>
+            </div>
+          </a>
+          <a class="solution-card gs-reveal" href="solution.html">
+            <img alt="Infrastructure de recharge électrique" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=85" />
+            <span class="solution-arrow">→</span>
+            <div class="solution-card-body">
+              <h3 class="solution-card-title">Infrastructure de recharge électrique</h3>
+              <p class="solution-card-text">Des systèmes avancés de mobilité électrique conçus pour alimenter la nouvelle génération de transports.</p>
+            </div>
+          </a>
+          <a class="solution-card gs-reveal" href="solution.html">
+            <img alt="Stratégie durable" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85" />
+            <span class="solution-arrow">→</span>
+            <div class="solution-card-body">
+              <h3 class="solution-card-title">Stratégie durable</h3>
+              <p class="solution-card-text">Un accompagnement sur mesure pour aider les organisations à évoluer vers des opérations neutres en carbone.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- END: SolutionsSection -->
+    <!-- BEGIN: StatisticsSection -->
+    <section class="py-24 px-[5%] max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 items-center overflow-hidden"
+      data-purpose="statistics">
+      <div
+        class="lg:w-1/2 grid grid-cols-2 bg-white rounded-[2rem] overflow-hidden border border-surface-stroke gs-reveal-left">
+        <div class="stats-grid-item p-10 text-center group hover:bg-slate-50 transition-colors">
+          <div class="text-5xl font-display font-extrabold text-primary"><span class="count" data-val="12">0</span><span
+              class="text-2xl align-top mt-4 inline-block text-cyan-500 font-bold">M+</span></div>
+          <div class="text-xs font-bold uppercase tracking-widest text-muted-text mt-4">Compensation Carbone (Tonnes)
+          </div>
+        </div>
+        <div class="stats-grid-item p-10 text-center group hover:bg-slate-50 transition-colors">
+          <div class="text-5xl font-display font-extrabold text-primary"><span class="count" data-val="450">0</span>
+          </div>
+          <div class="text-xs font-bold uppercase tracking-widest text-muted-text mt-4">Projets Globaux</div>
+        </div>
+        <div class="stats-grid-item p-10 text-center group hover:bg-slate-50 transition-colors">
+          <div class="text-5xl font-display font-extrabold text-primary"><span class="count" data-val="85">0</span><span
+              class="text-2xl align-top mt-4 inline-block text-cyan-500 font-bold">%</span></div>
+          <div class="text-xs font-bold uppercase tracking-widest text-muted-text mt-4">Efficacité Énergétique</div>
+        </div>
+        <div class="stats-grid-item p-10 text-center group hover:bg-slate-50 transition-colors">
+          <div class="text-5xl font-display font-extrabold text-primary"><span class="count" data-val="24">0</span><span
+              class="text-2xl align-top mt-4 inline-block text-cyan-500 font-bold">/7</span></div>
+          <div class="text-xs font-bold uppercase tracking-widest text-muted-text mt-4">Intelligence de Surveillance
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-1/2 gs-reveal-right">
+        <span class="text-accent-orange font-bold uppercase tracking-[0.2em] text-xs">— NOTRE IMPACT RÉEL</span>
+        <h2 class="text-4xl md:text-4xl font-display font-bold mt-8 mb-8 leading-[1.1] tracking-tight">Des résultats
+          tangibles pour une planète en mutation.</h2>
+        <p class="text-muted-text text-lg leading-relaxed mb-10">Nous ne nous contentons pas de concevoir des systèmes
+          ; nous mesurons l'impact réel de chaque déploiement pour garantir un avenir viable. Nos technologies
+          redéfinissent la performance industrielle.</p>
+        <div class="magnetic-wrap">
+          <button class="flex items-center gap-4 group magnetic-btn">
+            <div
+              class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+                </path>
+              </svg>
+            </div>
+            <span class="font-bold text-lg uppercase tracking-tight">Lire le rapport d'impact</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- END: StatisticsSection -->
+    <!-- BEGIN: MainContentBanner -->
+    <section class="py-24 px-[5%] max-w-7xl mx-auto" data-purpose="featured-content">
+      <div class="flex flex-col md:flex-row items-center gap-14">
+        <div class="md:w-5/12 gs-reveal">
+          <span class="text-muted-text uppercase tracking-widest font-bold text-xs">À PROPOS DE NOUS</span>
+          <h2 class="text-4xl md:text-4xl font-display font-bold mt-8 mb-8 leading-tight tracking-tight">Conduire le
+            changement vers une infrastructure durable.</h2>
+          <p class="text-muted-text leading-relaxed mb-12">Depuis une décennie, nous transformons les réseaux
+            électriques vieillissants en écosystèmes dynamiques capables d'accueillir 100% d'énergies renouvelables.
+          </p>
+          <div class="magnetic-wrap">
+            <div class="flex items-center gap-4 cursor-pointer group magnetic-btn">
+              <div
+                class="w-12 h-12 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                  <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                  </path>
+                </svg>
+              </div>
+              <span class="font-bold uppercase text-sm tracking-widest">En savoir plus</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-7/12 relative rounded-[2rem] overflow-hidden gs-reveal shadow-2xl">
+          <img alt="Pôle d'énergie propre" class="parallax-img w-full h-[460px] object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3opsKxypT3rEm-TE8kUXbXnnNaK20R6QHqK8Wn141kqDvY53JOfiPgyJe9bbdFKrIFBUx4m2vUtUmzkotaLvBzwJyI_aJ6YJz3RX-8W53ArwH5dmwVsGT5w60oWYVQDUxXYZUALCTtXoNx8XC4UUHnVroW5iT3KQ1lEvRykwGs9AF1TuQ9Ua41QqzCZnl9dgfqI_FKI5wfgGm4XJtZhjSSNIQjYVriFN-5JL48gmzeWYsif4dZ2Ptn13qM4H9hPzn9bpx2SWgOc4" />
+          <div
+            class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-xl p-10 rounded-[2rem] shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+              <h4 class="font-bold text-2xl tracking-tight">Stockage d'énergie par hydrogène vert</h4>
+              <p class="text-muted-text text-sm mt-2 font-medium">Nouveau complexe industriel automatisé en Europe du
+                Nord.</p>
+            </div>
+            <a class="text-accent-orange font-bold text-sm tracking-widest uppercase hover:underline"
+              href="Projects.html">Projet →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: MainContentBanner -->
+    <!-- BEGIN: PartnersSection -->
+    <section class="partners-scroll" data-purpose="partners-vertical">
+      <div class="partners-pin">
+        <div class="partners-layout">
+          <div class="partners-cards-window">
+            <div class="partners-track">
+              <article class="partner-card">
+                <img alt="Éolienne dans la brume" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=85" />
+                <div class="quote-mark">“</div>
+                <p class="partner-quote mt-6">MySol nous a aidés à optimiser nos opérations énergétiques avec précision et transparence. Leurs solutions ont transformé notre manière de gérer nos ressources.</p>
+                <p class="partner-author mt-10">— Maya Chen, PDG, VoltGrid</p>
+              </article>
+              <article class="partner-card">
+                <img alt="Panneau de contrôle énergétique minimaliste" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=85" />
+                <div class="quote-mark">“</div>
+                <p class="partner-quote mt-6">Leur plateforme de supervision a transformé des données énergétiques dispersées en décisions quotidiennes fiables pour nos équipes.</p>
+                <p class="partner-author mt-10">— Jonas Meyer, responsable des opérations, Quantum&sup2;</p>
+              </article>
+              <article class="partner-card">
+                <img alt="Paysage d’énergie propre" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" />
+                <div class="quote-mark">“</div>
+                <p class="partner-quote mt-6">Nous avons déployé nos infrastructures renouvelables plus vite tout en gardant un reporting clair pour chaque partie prenante.</p>
+                <p class="partner-author mt-10">— Lina Torres, directrice stratégie, Solaris Energy</p>
+              </article>
+            </div>
+          </div>
+          <div class="partners-copy">
+            <div class="partners-kicker mb-6">⊙ Nos partenaires</div>
+            <h2 class="partners-title mb-7">La confiance des innovateurs<br />du monde entier.</h2>
+            <p class="partners-text mb-12">Nos partenaires et clients partagent un objectif commun : bâtir un avenir plus propre, plus résilient et porté par l’innovation.</p>
+            <div class="logo-cloud" aria-label="Logos des partenaires">
+              <div class="logo-pill"><span>◎</span>Interlack</div>
+              <div class="logo-pill"><span>■</span>Hexahedron</div>
+              <div class="logo-pill"><span>✣</span>Euphoria</div>
+              <div class="logo-pill"><span>◒</span>Eclipseful</div>
+              <div class="logo-pill"><span>▰</span>Peregrin</div>
+              <div class="logo-pill"><span>✳</span>Solaris Energy</div>
+              <div class="logo-pill"><span>✚</span>Clandestine</div>
+              <div class="logo-pill"><span>⚡</span>Boltshift</div>
+              <div class="logo-pill"><span>◆</span>AlphaWave</div>
+              <div class="logo-pill"><span>◔</span>Quantum²</div>
+              <div class="logo-pill"><span>◎</span>Interlack</div>
+              <div class="logo-pill"><span>■</span>Hexahedron</div>
+              <div class="logo-pill"><span>✣</span>Euphoria</div>
+              <div class="logo-pill"><span>◒</span>Eclipseful</div>
+              <div class="logo-pill"><span>▰</span>Peregrin</div>
+              <div class="logo-pill"><span>✳</span>Solaris Energy</div>
+              <div class="logo-pill"><span>✚</span>Clandestine</div>
+              <div class="logo-pill"><span>⚡</span>Boltshift</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: PartnersSection -->
+    <!-- BEGIN: Testimonials -->
+    <section class="py-28 bg-white" data-purpose="testimonials">
+      <div class="px-[5%] max-w-7xl mx-auto flex flex-col gap-32">
+        <!-- Testimonial 1 -->
+        <div class="flex flex-col md:flex-row gap-10 items-center gs-reveal">
+          <div
+            class="md:w-1/2 aspect-square bg-slate-50 rounded-[2rem] relative overflow-hidden flex items-center justify-center p-10 shadow-inner">
+            <img alt="Turbine" class="parallax-img w-full h-full object-contain scale-90"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVEcyPIEF7NBYoSUmq95B1kR4BFWX0WOLlVAk-wNp2OLbC0vTZBUP49a5C3kgpw7M2HEkkuO4YPD926Wv1Y7rSsz-wd-X6I46fWngun3rQk-v28TMOrxmZYNSK_YfoiskZ_9IGJdc2In089riF1X0UbZtUZ6Cvea-9q8lIuUcskiMLMsT-nDhU14Ls9POEYkS0rv1bADAu84QDiCN3xjeD6aPFKlNk1N_qtiULrYF7cAns_RImQTbh2iJhxY25k3ICLPX3lK9_xqA" />
+            <div
+              class="absolute top-9 left-12 text-[160px] font-display font-black text-slate-200 leading-none opacity-50 select-none">
+              “</div>
+          </div>
+          <div class="md:w-1/2">
+            <blockquote class="text-3xl md:text-4xl font-light leading-relaxed italic text-primary tracking-tight">
+              "MySol Visionnaire nous a fourni le cadre structurel et l'expertise technique nécessaires pour faire
+              passer nos centres de fabrication à 100 % d'énergie renouvelable avant notre objectif de 2025."
+            </blockquote>
+            <div class="mt-12 flex items-center gap-6">
+              <div
+                class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xl text-primary border border-slate-200">
+                MS</div>
+              <div>
+                <p class="font-bold text-xl">Marcus Sterling</p>
+                <p class="text-xs text-muted-text font-bold uppercase tracking-widest mt-1">PDG, Global Logistics Corp
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 (Reversed) -->
+        <div class="flex flex-col md:flex-row-reverse gap-10 items-center gs-reveal">
+          <div
+            class="md:w-1/2 aspect-square bg-slate-50 rounded-[2rem] relative overflow-hidden flex items-center justify-center p-10 shadow-inner">
+            <img alt="Cadran" class="parallax-img w-full h-full object-contain scale-90"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGe0MvcgpJ0ns0ypMv2OaYtB4QL7Li9pqmZMgbyCrMm90YB3r3ZJbFl0v6U3ALhHoBiYVaLds_7NtOI0UE97uNGCR2Cuk892o2EBjuHqca56YCQVD7ykS26Z3lkf3MzEvKymCXb4s_dHV1gf7Yi6Nq2JIpyExC9_4MvwFGwOnVuf3FyrY0FUi_J9hRoQ9DJGKLkWRsvcbl2Y-JtMHN0mqvSUSAwOLvjPjuTXO8X36-OuXQEcxqSNMOptdFEHBFtZQto1TzjD_LGpU" />
+            <div
+              class="absolute top-9 left-12 text-[160px] font-display font-black text-slate-200 leading-none opacity-50 select-none">
+              “</div>
+          </div>
+          <div class="md:w-1/2">
+            <blockquote class="text-3xl md:text-4xl font-light leading-relaxed italic text-primary tracking-tight">
+              "Leur approche de la précision est inégalée. Nous avons réduit nos coûts opérationnels de 30% tout
+              en atteignant nos objectifs de neutralité carbone avec une facilité déconcertante."
+            </blockquote>
+            <div class="mt-12 flex items-center gap-6">
+              <div
+                class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xl text-primary border border-slate-200">
+                ER</div>
+              <div>
+                <p class="font-bold text-xl">Elena Rodriguez</p>
+                <p class="text-xs text-muted-text font-bold uppercase tracking-widest mt-1">Vice-présidente Innovation, EnerGrid</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: Testimonials -->
+    <!-- BEGIN: BlogSection -->
+    <section class="home-blogs" data-purpose="blog-grid">
+      <div class="max-w-7xl mx-auto text-center">
+        <div class="home-blogs-kicker mb-5 gs-reveal">⊙ Articles</div>
+        <h2 class="home-blogs-title mb-5 gs-reveal">Idées &amp; Innovation</h2>
+        <p class="home-blogs-copy max-w-xl mx-auto mb-7 gs-reveal">
+          Découvrez les dernières tendances en technologies propres, innovation énergétique et design durable, sélectionnées pour inspirer et informer.
+        </p>
+        <a class="home-blogs-button mb-14 gs-reveal" href="Blogs.html">
+          <span>⊙</span>
+          Voir tous les articles
+        </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+          <a class="blog-card-modern gs-reveal" href="Blogs.html">
+            <img alt="Réseau de recharge électrique" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1000&q=85" />
+            <span class="blog-arrow">→</span>
+            <div class="blog-card-body">
+              <span class="blog-tag">Mobilité électrique</span>
+              <h3 class="blog-card-title">L’avenir des réseaux de recharge électrique</h3>
+              <p class="blog-card-text">Découvrez comment les infrastructures de recharge évolutives et la gestion intelligente du réseau alimentent la nouvelle génération de mobilité électrique.</p>
+            </div>
+          </a>
+          <a class="blog-card-modern gs-reveal" href="Blogs.html">
+            <img alt="Façade réfléchissante d’un bâtiment durable" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85" />
+            <span class="blog-arrow">→</span>
+            <div class="blog-card-body">
+              <span class="blog-tag">Durabilité &amp; stratégie</span>
+              <h3 class="blog-card-title">Stratégies durables pilotées par les données pour 2025</h3>
+              <p class="blog-card-text">Découvrez comment les entreprises utilisent l’analyse de données pour fixer des objectifs durables mesurables et obtenir de vrais résultats de réduction carbone.</p>
+            </div>
+          </a>
+          <a class="blog-card-modern gs-reveal" href="Blogs.html">
+            <img alt="Discussion d’une équipe innovation" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85" />
+            <span class="blog-arrow">→</span>
+            <div class="blog-card-body">
+              <span class="blog-tag">Entreprise &amp; culture</span>
+              <h3 class="blog-card-title">Construire une culture de l’innovation chez MySol</h3>
+              <p class="blog-card-text">L’avenir des renouvelables dépend d’une distribution énergétique intelligente : voici comment les réseaux intelligents équilibrent production, demande et stockage.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- END: BlogSection -->
+  </main>
+  <!-- BEGIN: Redesigned Premium Footer -->
+  <footer class="mt-14 font-geist" data-purpose="premium-footer">
+    <div class="bg-[#F4F4F4] rounded-[32px] px-9 py-14 mb-8 mx-6 gs-reveal">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-8">
+        <!-- LEFT SIDE (60%) -->
+        <div class="lg:w-[60%] flex flex-col justify-between">
+          <div class="mb-14 lg:mb-0">
+            <div class="font-display font-black text-4xl tracking-tighter" data-purpose="brand-logo-footer">CLEANTECH
+            </div>
+          </div>
+          <!-- Breathing Space / Middle -->
+          <div class="hidden lg:block h-32"></div>
+          <!-- Bottom Link Area -->
+          <div class="flex flex-col sm:flex-row gap-9 lg:gap-10 items-start relative">
+            <!-- Col 1 -->
+            <div class="flex flex-col gap-4">
+              <h5 class="text-xs font-bold uppercase tracking-widest text-muted-text/60 mb-2">Navigation</h5>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="apropos.html">À
+                propos</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium"
+                href="solution.html">Solutions</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium"
+                href="Projects.html">Projets</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium"
+                href="Blogs.html">Articles</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium"
+                href="contact.html">Contact</a>
+            </div>
+            <!-- Col 2 -->
+            <div class="flex flex-col gap-4">
+              <h5 class="text-xs font-bold uppercase tracking-widest text-muted-text/60 mb-2">Légal</h5>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Politique de
+                Confidentialité</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Conditions
+                d'Utilisation</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Page 404</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Accès
+                Protégé</a>
+            </div>
+            <!-- Col 3 -->
+            <div class="flex flex-col gap-4">
+              <h5 class="text-xs font-bold uppercase tracking-widest text-muted-text/60 mb-2">Ressources</h5>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Guide de
+                Style</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium"
+                href="#">Instructions</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Composants</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Historique</a>
+              <a class="text-on-surface hover:text-accent-orange transition-colors font-medium" href="#">Licences</a>
+            </div>
+            <!-- Far Right Socials -->
+            <div class="flex sm:flex-col gap-6 pt-2 sm:pt-0 sm:absolute sm:right-0">
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z">
+                  </path>
+                </svg>
+              </a>
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                  </path>
+                </svg>
+              </a>
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                  </path>
+                </svg>
+              </a>
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                  </path>
+                </svg>
+              </a>
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M12.525.023C5.29.227.027 5.534.027 12.5c0 7.146 5.547 12.5 12.473 12.5 7.126 0 12.5-5.547 12.5-12.5 0-7.126-5.547-12.5-12.5-12.5H12.525zM12.5 19c-3.584 0-6.5-2.916-6.5-6.5S8.916 6 12.5 6s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5z">
+                  </path>
+                </svg>
+              </a>
+              <a class="opacity-40 hover:opacity-100 transition-opacity" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.848 0-3.204.012-3.584.07-4.849.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.778 6.98 6.978 1.28.058 1.688.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.058-1.28.072-1.688.072-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT SIDE (40%) -->
+        <div class="lg:w-[40%]">
+          <div class="group relative aspect-[1.1/1] rounded-[28px] overflow-hidden shadow-2xl">
+            <img alt="Terre vue depuis l’espace"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHN2wYTLXBO6wL1ONaititthguw3x9EWPB-93FNBgA_XzoWLWJ2z1yRQ_15L5kel3Rh4EUBwn43myT5CSmKEYTC_agjqORmBEY-gRDc51H7wvqb7Sy_auL8uNrgAv8XdVPyQwODH69cSZBwikFWabQMO7z3TymEBuWwGP2pNJEpcuRkPBkfHqLhQravCHT5cfvSUXwuwS34jMLmlYTnWWekbHt5GzhMYsQvXc7efPndNLkBpOHXJSZCBJUbbBToNf_wdxmMyVYzvM" />
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500"></div>
+            <div class="absolute inset-0 p-9 flex flex-col justify-end text-white">
+              <h3 class="text-4xl md:text-4xl font-display font-black leading-tight tracking-tight mb-6">Prêt à
+                construire l'avenir de l'énergie ?</h3>
+              <p class="text-white/80 text-lg mb-10 max-w-sm">Créons ensemble des solutions plus propres et plus
+                intelligentes.</p>
+              <div class="magnetic-wrap">
+                <button
+                  class="bg-white text-black px-10 py-5 rounded-[16px] font-bold text-lg hover:bg-white/90 hover:-translate-y-1 transition-all duration-300 magnetic-btn shadow-xl">
+                  Commencer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BOTTOM BAR -->
+    <div
+      class="bg-[#F4F4F4] rounded-full px-9 py-5 mb-8 mx-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-text font-medium gap-4 gs-reveal">
+      <div class="flex items-center">
+        <p>© <span data-current-year>2025</span> MySol. Tous droits réservés.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <p>Créé par <span
+            class="text-on-surface font-bold hover:text-accent-orange transition-colors cursor-pointer">Eben</span>
+          • Fait avec amour
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- END: Redesigned Premium Footer -->
+  <script data-purpose="gsap-animations">
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.set(".gs-reveal-left, .gs-reveal-right", { opacity: 0 });
+
+    // Initial Load Animations (Hero Reveal)
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      tl.from(".hero-text", {
+        y: 120,
+        skewY: 7,
+        duration: 1.5,
+        stagger: 0.15
+      })
+        .from(".gs-reveal-hero", {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          stagger: 0.2
+        }, "-=0.8")
+        .from("#main-nav", {
+          opacity: 0,
+          duration: 0.6
+        }, "-=1");
+    });
+
+    // General Section Reveal (Slide Up & Fade In)
+    document.querySelectorAll('.gs-reveal').forEach((el) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        },
+        opacity: 1,
+        y: 0,
+        startAt: { y: 40 },
+        duration: 1,
+        ease: "power3.out"
+      });
+    });
+
+    // Left/Right Section Reveal
+    gsap.to(".gs-reveal-left", {
+      scrollTrigger: { trigger: ".gs-reveal-left", start: "top 80%" },
+      opacity: 1, x: 0, startAt: { x: -100 }, duration: 1.5, ease: "power3.out"
+    });
+    gsap.to(".gs-reveal-right", {
+      scrollTrigger: { trigger: ".gs-reveal-right", start: "top 80%" },
+      opacity: 1, x: 0, startAt: { x: 100 }, duration: 1.5, ease: "power3.out"
+    });
+
+    // Partners vertical scroll: each card reveals its text, then the next card takes over.
+    const partnersTrack = document.querySelector('.partners-track');
+    const partnersWindow = document.querySelector('.partners-cards-window');
+    if (partnersTrack && partnersWindow) {
+      ScrollTrigger.matchMedia({
+        "(min-width: 768px)": function () {
+          const partnerCards = gsap.utils.toArray('.partner-card');
+          const partnersTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".partners-scroll",
+              pin: ".partners-pin",
+              start: "top top",
+              end: () => "+=" + (window.innerHeight * (partnerCards.length + 0.9)),
+              scrub: true,
+              invalidateOnRefresh: true
+            }
+          });
+
+          gsap.set(partnerCards, { autoAlpha: 0, y: 70, scale: 0.98 });
+          gsap.set(partnerCards[0], { autoAlpha: 1, y: 0, scale: 1 });
+          gsap.set('.partner-card .quote-mark, .partner-card .partner-quote, .partner-card .partner-author', { autoAlpha: 0, y: 26 });
+
+          partnerCards.forEach((card, index) => {
+            const copy = card.querySelectorAll('.quote-mark, .partner-quote, .partner-author');
+
+            if (index === 0) {
+              partnersTl.to(copy, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.08 });
+              return;
+            }
+
+            const previous = partnerCards[index - 1];
+            const previousCopy = previous.querySelectorAll('.quote-mark, .partner-quote, .partner-author');
+
+            partnersTl
+              .to(previousCopy, { autoAlpha: 0, y: -22, duration: 0.28, stagger: 0.03 }, '+=0.25')
+              .to(previous, { autoAlpha: 0, y: -70, scale: 0.98, duration: 0.42 }, '<')
+              .to(card, { autoAlpha: 1, y: 0, scale: 1, duration: 0.48 }, '<0.08')
+              .to(copy, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.08 }, '+=0.1');
+          });
+
+          partnersTl.to({}, { duration: 0.35 });
+        }
+      });
+    }
+
+    gsap.from('.partners-copy > *', {
+      scrollTrigger: { trigger: '.partners-scroll', start: 'top 70%' },
+      opacity: 0,
+      y: 28,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out'
+    });
+
+    gsap.from('.logo-pill', {
+      scrollTrigger: { trigger: '.logo-cloud', start: 'top 85%' },
+      opacity: 0,
+      y: 18,
+      scale: 0.96,
+      duration: 0.55,
+      stagger: 0.045,
+      ease: 'power3.out'
+    });
+
+    gsap.utils.toArray('.solution-card, .blog-card-modern').forEach((card, index) => {
+      gsap.to(card, {
+        scrollTrigger: { trigger: card, start: 'top 88%' },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        startAt: { opacity: 0, y: 48, scale: 0.98 },
+        duration: 0.8,
+        delay: (index % 3) * 0.06,
+        ease: 'power3.out'
+      });
+    });
+
+    // Smooth Parallax Effects
+    document.querySelectorAll('.parallax-img').forEach((img) => {
+      gsap.to(img, {
+        scrollTrigger: {
+          trigger: img,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        },
+        y: -80,
+        ease: "none"
+      });
+    });
+
+    // Magnetic Button Effect
+    document.querySelectorAll('.magnetic-wrap').forEach((wrap) => {
+      const btn = wrap.querySelector('.magnetic-btn');
+      if (!btn) return;
+
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.4,
+          y: y * 0.4,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.3)"
+        });
+      });
+    });
+
+    // Stats Counter Animation
+    const counters = document.querySelectorAll('.count');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-val');
+      gsap.to(counter, {
+        scrollTrigger: {
+          trigger: counter,
+          start: "top 90%"
+        },
+        innerHTML: target,
+        duration: 2,
+        snap: { innerHTML: 1 },
+        ease: "power2.out"
+      });
+    });
+
+    // Navigation Color Change on Scroll
+    ScrollTrigger.create({
+      start: 'top -80',
+      onEnter: () => gsap.to('#main-nav', { backgroundColor: 'rgba(255, 255, 255, 0.96)', duration: 0.4 }),
+      onLeaveBack: () => gsap.to('#main-nav', { backgroundColor: 'rgba(255, 255, 255, 0.94)', duration: 0.4 })
+    });
+    document.querySelectorAll('[data-current-year]').forEach((year) => {
+      year.textContent = new Date().getFullYear();
+    });
+
+    document.querySelectorAll('[data-menu-toggle]').forEach((toggle) => {
+      const menuRoot = toggle.closest('#main-nav, .shared-nav');
+      if (!menuRoot) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = menuRoot.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+      });
+
+      menuRoot.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menuRoot.classList.remove('menu-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        });
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 767) {
+        document.querySelectorAll('#main-nav.menu-open, .shared-nav.menu-open').forEach((menuRoot) => {
+          menuRoot.classList.remove('menu-open');
+          const toggle = menuRoot.querySelector('[data-menu-toggle]');
+          if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Ouvrir le menu');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
